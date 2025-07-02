@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('./partials/css/bootstrap.ejs') %>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>An!meHaven</title>
+    <link rel="icon" type="image/x-icon" href="https://store-images.s-microsoft.com/image/apps.26154.14336328626441452.f9e58b4c-0865-4311-8731-eeeec50b41da.b6269257-020f-4231-abe0-ebee90692ba0?h=210">
+</head>
+<body>
+    <%- include('./partials/components/nav.ejs') %>
+    <div class="container" style="margin-top: 15px;">
+        <h1 class="my-4">Login Now!!</h1>
+        <form method="post" action="/user/login">
+            <div class="mb-3">
+              <label for="exampleInputEmail1" class="form-label">Email address</label>
+              <input name="email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+              <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+            </div>
+            <div class="mb-3">
+              <label for="exampleInputPassword1" class="form-label">Password</label>
+              <input name = "password" type="password" class="form-control" id="exampleInputPassword1">
+            </div>
+            
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+          <h3 class="my-5 text-center">Don't have an account? <a href="/signup">Sign Up</a></h3>
+    </div>
+
+    <%- include('./partials/js/bootstrap.ejs') %>
+</body>
+</html>

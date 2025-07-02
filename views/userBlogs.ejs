@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('./partials/css/bootstrap.ejs') %>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>An!meHaven</title>
+    <link rel="icon" type="image/x-icon" href="https://store-images.s-microsoft.com/image/apps.26154.14336328626441452.f9e58b4c-0865-4311-8731-eeeec50b41da.b6269257-020f-4231-abe0-ebee90692ba0?h=210">
+</head>
+<body>
+    <%- include('./partials/components/nav.ejs') %>
+    <div class="container text-center">
+        
+        <h3 style="margin-top: 20px;">Blogs By Me</h3>
+        <br>
+        <div class="row mt-3">
+            <% blogs.forEach(blog => { %>
+                <div class="card mx-2 " style="width: 18rem;">
+                    <img src="/uploads/<%=blog.coverImage%>" class="card-img-top" alt="anime image" style="display: flex; height: 350px; width: auto;">
+                    <div class="card-body">
+                    <h5 class="card-title"><%=blog.title.slice(0,20)%></h5>
+                    <p class="card-text"><%=blog.content.slice(0,100)%>...</p>
+                    <a href="/blog/view/<%=blog._id%>" class="btn btn-primary">Read More</a>
+                    </div>
+                </div>
+        
+        <% }) %>
+        </div>
+    </div>
+    <%- include('./partials/js/bootstrap.ejs') %>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('./partials/css/bootstrap.ejs') %>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>An!meHaven</title>
+    <link rel="icon" type="image/x-icon" href="https://store-images.s-microsoft.com/image/apps.26154.14336328626441452.f9e58b4c-0865-4311-8731-eeeec50b41da.b6269257-020f-4231-abe0-ebee90692ba0?h=210">
+</head>
+<body>
+    <%- include('./partials/components/nav.ejs') %>
+    <div class="container text-center my-5">
+        <h3>Create A Blog</h3>
+        <div class="my-5">
+        <form method="post" action="/blog/create" enctype="multipart/form-data">
+            <div class="mb-3">
+                <label for="coverImage" class="form-label">Cover image</label><br>
+                <input type="file" name="coverImage">
+            <br>
+            <div class="mb-3 my-4">
+                <label for="title" class="form-label">Title</label><br>
+                <input name="title" type="text" class="form-title" id="title" aria-describedby="blogTiitle">
+                <div id="titleHelp" class="form-text">A Title For Your Amazing Blog</div>
+            </div>
+            <div class="mb-3 my-5">
+                <label for="content" class="form-label">Content </label>
+                <textArea name='content' id='content' class="form-control"></textArea>
+                
+                <div id="contentHelp" class="form-text">The Content Your Amazing Blog</div>
+                <button type="submit" class="btn btn-primary my-5">Create</button>
+            </div>
+        </form>
+        </div>
+    </div>
+
+    <%- include('./partials/js/bootstrap.ejs') %>
+</body>
+</html>

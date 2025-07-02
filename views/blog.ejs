@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('./partials/css/bootstrap.ejs') %>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>An!meHaven</title>
+    <link rel="icon" type="image/x-icon" href="https://store-images.s-microsoft.com/image/apps.26154.14336328626441452.f9e58b4c-0865-4311-8731-eeeec50b41da.b6269257-020f-4231-abe0-ebee90692ba0?h=210">
+</head>
+<body>
+    <%- include('./partials/components/nav.ejs') %>
+        <div class="container">
+            <% if (locals.user && user.role == "Admin") { %>
+                <button class="btn btn-danger" href="/blog/delete/<%=blog._id%>">Delete Blog</button>
+            <% } %>
+            <h1 class="mt-5" style="text-align: center;"><%=blog.title%></h1>
+            <div class="text-center mt-4">
+                <img src="/uploads/<%=blog.coverImage%>" class=" shadow p-3 mb-5 bg-body-tertiary rounded rounded" alt="animelogo" style="height: 300px; width: auto;">
+              </div>
+              <p class="text-center mt-1" style="font-size: smaller;"> By <%= blog.author.fullName%> </p>
+              <p><%=blog.content%>
+                <br>
+
+                <h5 class="mt-5">Comments (<%=comments.length%>)</h5>
+                <div>
+                    <% if (locals.user) { %>
+                        
+                        <input id="comment-input" class="form-control" type="text" placeholder="Enter Your Comment Here">
+                        <button id="submitButton" class="btn btn-success my-3">Post</button>
+
+                    <% } %>
+                    <% comments.forEach(comment => { %>
+                        <div class="row my-1">
+                            <div class="col ">
+                              <div class="card" style="width: 30rem;">
+                                <div class="card-body">
+                                  
+                                  <p class="card-text"><%=comment.createdBy.fullName%> Posted A Comment Saying <%= comment.content %></p>
+                                </div>
+                              </div>
+                            </div>
+                        
+                     
+                    <% }) %>
+                </div>
+                    <script>
+                        const blogId = "<%= blog._id %>";
+                        const input = document.getElementById("comment-input");
+                        const btn =  document.getElementById("submitButton");
+                        btn.addEventListener("click",createComment)
+                        function createComment() {
+                            fetch("/comment/create",{
+                            method : "POST",
+                            headers: {
+                                "Content-Type" : 'application/json',
+                                },
+                                body: JSON.stringify({blogId, content : input.value}),
+                            }).then(e => window.location.reload());
+                        }
+
+                    </script>
+                </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </div>
+    <%- include('./partials/js/bootstrap.ejs') %>
+</body>
+</html>
